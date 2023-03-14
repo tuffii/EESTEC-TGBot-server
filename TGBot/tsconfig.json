@@ -1,6 +1,6 @@
 {
   "include": [
-    "src/**/*.ts", "src/Telegram/Commands/Start.ts",
+    "src/**/*",
   ],
   
   "exclude": [
@@ -69,9 +69,7 @@
     // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
-    "types": [
-      "node",
-    ],                                                   /* Specify type package names to be included without being referenced in a source file. */
+    // "types": [],                                      /* Specify type package names to be included without being referenced in a source file. */
 
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
     // "moduleSuffixes": [],                             /* List of file name suffixes to search when resolving a module. */
