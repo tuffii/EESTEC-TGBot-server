@@ -23,7 +23,7 @@
 
   "license": "ISC",
 
-  "homepage": "https://url.com",
+  "homepage": "https://github.com/var3n1k/EESTEC-TelegramBot-server.git",
   "repository": {
     "type": "git",
     "url": "https://github.com/var3n1k/EESTEC-TelegramBot-server.git"
@@ -53,23 +53,23 @@
     "dontCloseAfterScript": "pause",
 
     "deletePreviousProjectBuild": "rimraf ./build",
-    "createNewProjectBuild": "tsc & npm run dontCloseAfterScript",
+    "createNewProjectBuild": "tsc",
 
-    "executeMainDevFile": "npx ts-node ./src/index.ts & npm run dontCloseAfterScript",
-    "executeMainBuildFile": "node ./build/src/index.js & npm run dontCloseAfterScript",
-    "executeMainTestFile": "node ./test/index.js & npm run dontCloseAfterScript",
+    "executeMainDevFile": "npx ts-node ./src/index.ts",
+    "executeMainProdFile": "node ./build/src/index.js",
+    "executeMainTestFile": "node ./test/index.js",
 
     "predev": "echo Running Before-Development script...",
     "dev": "echo Running Development script... & npm run executeMainDevFile",
-    "postdev": "echo Running After-Development script... & pause",
+    "postdev": "echo Running After-Development script... & npm run dontCloseAfterScript",
     
     "prebuild": "echo Running Before-Build script...",
     "build": "echo Running Build script... & npm run deletePreviousProjectBuild & npm run createNewProjectBuild",
-    "postbuild": "echo Running After-Build script... & pause",
+    "postbuild": "echo Running After-Build script... & npm run dontCloseAfterScript",
 
-    "prerunbuild": "echo Running Before-RunBuild script...",
-    "runbuild": "echo Running RunBuild script... & npm run executeMainBuildFile",
-    "postrunbuild": "echo Running After-RunBuild script... & pause",
+    "preprod": "echo Running Before-Production script...",
+    "prod": "echo Running Production script... & npm run executeMainProdFile",
+    "postprod": "echo Running After-Production script... & npm run dontCloseAfterScript",
 
     "pretest": "echo Running Before-Testing script...",
     "test": "echo Running Testing script... & npm run executeMainTestFile",
@@ -112,12 +112,12 @@
   "config": {},
 
   "engines": {
-    "node": ">=16.0.0"
+    "node": "^12.20.0 || >=14.13.1"
   },
   "os": [],
   "cpu": [],
 
-  "private": false,
+  "private": true,
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
