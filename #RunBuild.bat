@@ -1,4 +1,4 @@
 @echo off
 
-npm run runbuild
+npm run prod & npm run dontCloseAfterScript
 :: one two=three four
