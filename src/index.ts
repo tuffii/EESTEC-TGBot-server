@@ -1,5 +1,5 @@
-import * as CoreAPI from '@var3n1k/core'
-const Core = new CoreAPI.default({}, {}, {}, {})
+import * as ServerCore from '@var3n1k/server-core'
+const Core = new ServerCore.default({}, {}, {}, {})
 
 import * as GlobalModule from './module.js'
 
@@ -9,5 +9,6 @@ await Core.Init(async () => {
 
 	await GlobalModule.Telegram.Init()
 
+	await GlobalModule.DataBase.PostgreSQL.DataBases.Telegram.Init()
 	await GlobalModule.DataBase.PostgreSQL.DataBases.EESTEC.Init()
 })

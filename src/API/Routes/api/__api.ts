@@ -1,8 +1,9 @@
-import * as CoreAPI from '@var3n1k/core'
+import * as ServerCore from '@var3n1k/server-core'
 
-import * as UsersRouter from './users/__users.js'
+import * as TelegramRouter from './telegram/__telegram.js'
+import * as EESTECRouter from './eestec/__eestec.js'
 
-const APIRouter = new CoreAPI.Engine.API.WebServer.HTTP.API.Router.default()
-APIRouter.Add(`/api`, [UsersRouter.default])
+const APIRouter = new ServerCore.Engine.API.WebServer.HTTP.API.Router.default()
+APIRouter.Add(`/api`, [TelegramRouter.default, EESTECRouter.default])
 
 export default APIRouter

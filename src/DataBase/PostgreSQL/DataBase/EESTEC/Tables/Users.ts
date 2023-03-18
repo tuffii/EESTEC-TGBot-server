@@ -1,6 +1,6 @@
-import * as CoreAPI from '@var3n1k/core'
+import * as ServerCore from '@var3n1k/server-core'
 
-const TableName = `eestec_users`
+const TableName = `users`
 const TableFields = {
     ID: `id`,
     Name: {
@@ -28,11 +28,11 @@ export interface Input {
 	readonly [TableFields.Telegram.ID]: Output[typeof TableFields.Telegram.ID]
 }
 
-export default class Table extends CoreAPI.Engine.API.DataBase.PostgreSQL.API.DataBases.Tables.BaseTable<Input, Output> {
-	constructor(api: CoreAPI.Engine.API.DataBase.PostgreSQL.API.default, database: CoreAPI.Engine.API.DataBase.PostgreSQL.API.DataBases.BaseDataBase) {
+export default class Table extends ServerCore.Engine.API.DataBase.PostgreSQL.API.DataBases.Tables.BaseTable<Input, Output> {
+	constructor(api: ServerCore.Engine.API.DataBase.PostgreSQL.API.default, database: ServerCore.Engine.API.DataBase.PostgreSQL.API.DataBases.BaseDataBase) {
 		super(api, database, TableName, {
             [TableFields.ID]: {
-                Type: CoreAPI.Engine.API.DataBase.PostgreSQL.API.DataBases.Tables.DataType.Numeric.Int,
+                Type: ServerCore.Engine.API.DataBase.PostgreSQL.API.DataBases.Tables.DataType.Numeric.Int,
                 MetaData: {
                     DefaultValue: undefined,
                     IsPrimary: true,
@@ -42,7 +42,7 @@ export default class Table extends CoreAPI.Engine.API.DataBase.PostgreSQL.API.Da
                 },
             },
             [TableFields.Name.First]: {
-                Type: CoreAPI.Engine.API.DataBase.PostgreSQL.API.DataBases.Tables.DataType.String.Text,
+                Type: ServerCore.Engine.API.DataBase.PostgreSQL.API.DataBases.Tables.DataType.String.Text,
                 MetaData: {
                     DefaultValue: undefined,
                     IsPrimary: false,
@@ -52,7 +52,7 @@ export default class Table extends CoreAPI.Engine.API.DataBase.PostgreSQL.API.Da
                 },
             },
             [TableFields.Name.Last]: {
-                Type: CoreAPI.Engine.API.DataBase.PostgreSQL.API.DataBases.Tables.DataType.String.Text,
+                Type: ServerCore.Engine.API.DataBase.PostgreSQL.API.DataBases.Tables.DataType.String.Text,
                 MetaData: {
                     DefaultValue: undefined,
                     IsPrimary: false,
@@ -62,7 +62,7 @@ export default class Table extends CoreAPI.Engine.API.DataBase.PostgreSQL.API.Da
                 },
             },
             [TableFields.PhoneNumber]: {
-                Type: CoreAPI.Engine.API.DataBase.PostgreSQL.API.DataBases.Tables.DataType.String.VarChar,
+                Type: ServerCore.Engine.API.DataBase.PostgreSQL.API.DataBases.Tables.DataType.String.VarChar,
                 MetaData: {
                     DefaultValue: undefined,
                     IsPrimary: false,
@@ -72,7 +72,7 @@ export default class Table extends CoreAPI.Engine.API.DataBase.PostgreSQL.API.Da
                 },
             },
             [TableFields.Telegram.ID]: {
-                Type: CoreAPI.Engine.API.DataBase.PostgreSQL.API.DataBases.Tables.DataType.String.VarChar,
+                Type: ServerCore.Engine.API.DataBase.PostgreSQL.API.DataBases.Tables.DataType.String.VarChar,
                 MetaData: {
                     DefaultValue: undefined,
                     IsPrimary: false,
