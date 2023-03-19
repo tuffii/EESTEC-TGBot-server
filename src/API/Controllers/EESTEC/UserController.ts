@@ -1,5 +1,4 @@
 import * as ServerCore from '@var3n1k/server-core'
-
 import * as GlobalModule from '../../../module.js'
 
 type HTTPRequest = ServerCore.Engine.API.WebServer.HTTP.API.HTTPWebServerRequest
@@ -11,7 +10,6 @@ export default class UserController {
         const RequestEndpointElements = request.Destination.Endpoint.split(/\//)
         const RequestUserId = Number.parseInt(RequestEndpointElements[RequestEndpointElements.length - 1])
 
-        console.log(RequestUserId)
         const RequestUser = {
             id: RequestUserId,
             first_name: undefined,
@@ -61,5 +59,20 @@ export default class UserController {
 
             response.Responder.JSON(200, {}, RegisteredUser)
         }
+    }
+
+    public static async Delete(request: HTTPRequest, response: HTTPResponse): Promise<void> {
+
+        const ParsedRequestBody = JSON.parse(request.Body)
+        const IsUserExist = await GlobalModule.API.Services.EESTEC.User.default.DoesExist(ParsedRequestBody)
+
+        if (IsUserExist) {
+            const DeleteUser = await GlobalModule.API.Services.EESTEC.User.default.Delete(ParsedRequestBody)
+            response.Responder.JSON(200, {}, DeleteUser)
+        }
+        else {
+            response.Responder.JSON(409, {}, { message: `User doesn't exists` })
+        }
+
     }
 }
