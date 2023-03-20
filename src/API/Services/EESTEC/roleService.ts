@@ -19,18 +19,18 @@ const EESTECRoleSearchValidator = new Validator().Default.Object().Required().Ex
     id: new Validator().Default.Numeric().Number().Integer().Min(1),
     roleName: new Validator().Default.String().MinLength(1),
     privilegeID: new Validator().Default.Numeric().Number().Integer().Min(1),
-    parametr: new Validator().Default.Any().Required()
+    parametr: new Validator().Default.Any()
 })
 const EESTECRoleInputValidator = new Validator().Default.Object().Required().Exact({
     roleName: new Validator().Default.String().MinLength(1),
     privilegeID: new Validator().Default.Numeric().Number().Integer().Min(1),
-    parametr: new Validator().Default.Any().Required()
+    parametr: new Validator().Default.Any()
 })
 const EESTECRoleOutputValidator = new Validator().Default.Object().Required().Exact({
     id: new Validator().Default.Numeric().Number().Integer().Min(1),
     roleName: new Validator().Default.String().MinLength(1),
     privilegeID: new Validator().Default.Numeric().Number().Integer().Min(1),
-    parametr: new Validator().Default.Any().Required()
+    parametr: new Validator().Default.Any()
 })
 interface ValidationResult {
     readonly Status: boolean

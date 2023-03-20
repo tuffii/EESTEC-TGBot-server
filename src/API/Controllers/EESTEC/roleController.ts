@@ -21,7 +21,7 @@ export default class RoleController {
 
         const IsRoleExist = await GlobalModule.API.Services.EESTEC.Role.default.DoesExist(RequestRole)
         if (IsRoleExist) {
-            const [ExistingUser] = await GlobalModule.API.Services.EESTEC.User.default.Get(RequestRole)
+            const [ExistingUser] = await GlobalModule.API.Services.EESTEC.Role.default.Get(RequestRole)
 
             response.Responder.JSON(200, {}, ExistingUser)
 
@@ -41,7 +41,7 @@ export default class RoleController {
             response.Responder.JSON(409, {}, { message: `Role already exists` })
         }
         else {
-            const RegisteredRole = await GlobalModule.API.Services.EESTEC.User.default.Create(ParsedRequestBody)
+            const RegisteredRole = await GlobalModule.API.Services.EESTEC.Role.default.Create(ParsedRequestBody)
             response.Responder.JSON(200, {}, RegisteredRole)
         }
 
