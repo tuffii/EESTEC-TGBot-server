@@ -16,7 +16,7 @@ export interface Output {
 export interface Input {
   readonly [TableFields.UserID]: Output[typeof TableFields.UserID] // Декларация типа данных, которое содержит поле при ВВОДЕ со ссылкой на декларацию этого же поля для вывода. Количество полей для ввода может быть меньше, чем количество полей для вывода (к примеру, поле id - автоинкриминирующееся число -> его не нужно указывать вручную)
   readonly [TableFields.achieveID]: Output[typeof TableFields.achieveID]
-  readonly [TableFields.time]: Output[typeof TableFields.time];
+  readonly [TableFields.time]: Output[typeof TableFields.time]
 }
 
 export default class Table extends ServerCore.Engine.API.DataBase.PostgreSQL.API.DataBases.Tables.BaseTable<Input, Output> {

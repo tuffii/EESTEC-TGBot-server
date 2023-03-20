@@ -11,7 +11,6 @@ interface EESTECRoleSearch {
     id?: EESTECRoleOutput[`id`] | undefined,
     roleName?: EESTECRoleOutput[`roleName`] | undefined,
     privilegeID?: EESTECRoleOutput[`privilegeID`] | undefined,
-    parametr?: EESTECRoleOutput[`parametr`] | undefined
 }
 const Validator = ServerCore.Engine.Module.Classes.Validator
 
@@ -51,8 +50,6 @@ export default class RoleService {
         const IsRoleNameExist = !Validator.TypeGuard.Default.IsUndefined(roleNameSearch)
         const privilegeIDSearch = searchParameters.privilegeID
         const IsPrivilegeIDExist = !Validator.TypeGuard.Default.IsUndefined(privilegeIDSearch)
-        const parametrSearch = searchParameters.parametr
-        const IsParametrExist = !Validator.TypeGuard.Default.IsUndefined(parametrSearch)
 
         const EESTECDataBase = GlobalModule.DataBase.PostgreSQL.DataBases.EESTEC
         const EESTECRoleTable = EESTECDataBase.Tables.rolesSettings
@@ -62,7 +59,6 @@ export default class RoleService {
         if(IsIDToSearchExist) EESTECRoleMatchConditions.push(EESTECRoleTable.Condition.Single.EqualTo(`id`, IDToSearch))
         if(IsRoleNameExist) EESTECRoleMatchConditions.push(EESTECRoleTable.Condition.Single.EqualTo(`roleName`, roleNameSearch))
         if(IsPrivilegeIDExist) EESTECRoleMatchConditions.push(EESTECRoleTable.Condition.Single.EqualTo(`privilegeID`, privilegeIDSearch))
-        if(IsParametrExist) EESTECRoleMatchConditions.push(EESTECRoleTable.Condition.Single.EqualTo(`parametr`, parametrSearch))
 
         const EESTECRoleMatchCondition = EESTECRoleTable.Condition.Multiple.Every(...EESTECRoleMatchConditions)
 
@@ -107,8 +103,6 @@ export default class RoleService {
         const IsRoleNameExist = !Validator.TypeGuard.Default.IsUndefined(roleNameSearch)
         const privilegeIDSearch = searchParameters.privilegeID
         const IsPrivilegeIDExist = !Validator.TypeGuard.Default.IsUndefined(privilegeIDSearch)
-        const parametrSearch = searchParameters.parametr
-        const IsParametrExist = !Validator.TypeGuard.Default.IsUndefined(parametrSearch)
 
         const EESTECDataBase = GlobalModule.DataBase.PostgreSQL.DataBases.EESTEC
         const EESTECRoleTable = EESTECDataBase.Tables.rolesSettings
@@ -117,7 +111,6 @@ export default class RoleService {
         if(IsIDToSearchExist) EESTECRoleMatchConditions.push(EESTECRoleTable.Condition.Single.EqualTo(`id`, IDToSearch))
         if(IsRoleNameExist) EESTECRoleMatchConditions.push(EESTECRoleTable.Condition.Single.EqualTo(`roleName`, roleNameSearch))
         if(IsPrivilegeIDExist) EESTECRoleMatchConditions.push(EESTECRoleTable.Condition.Single.EqualTo(`privilegeID`, privilegeIDSearch))
-        if(IsParametrExist) EESTECRoleMatchConditions.push(EESTECRoleTable.Condition.Single.EqualTo(`parametr`, parametrSearch))
 
         const EESTECRoleMatchCondition = EESTECRoleTable.Condition.Multiple.Every(...EESTECRoleMatchConditions)
         const MatchedEESTECRoles = await RoleService.Get(searchParameters)
@@ -127,7 +120,6 @@ export default class RoleService {
         NewEESTECRoleSetters.push(EESTECRoleTable.ValueSetter.Single(`id`, newParameters.id))
         NewEESTECRoleSetters.push(EESTECRoleTable.ValueSetter.Single(`roleName`, newParameters.roleName))
         NewEESTECRoleSetters.push(EESTECRoleTable.ValueSetter.Single(`privilegeID`, newParameters.privilegeID))
-        NewEESTECRoleSetters.push(EESTECRoleTable.ValueSetter.Single(`parametr`, newParameters.parametr))
 
         const NewEESTECRoleSetter = EESTECRoleTable.ValueSetter.Multiple(...NewEESTECRoleSetters)
         const [UpdatedEESTECRole] = await EESTECRoleTable.Update(NewEESTECRoleSetter, EESTECRoleMatchCondition)
@@ -145,8 +137,6 @@ export default class RoleService {
         const IsRoleNameExist = !Validator.TypeGuard.Default.IsUndefined(roleNameSearch)
         const privilegeIDSearch = searchParameters.privilegeID
         const IsPrivilegeIDExist = !Validator.TypeGuard.Default.IsUndefined(privilegeIDSearch)
-        const parametrSearch = searchParameters.parametr
-        const IsParametrExist = !Validator.TypeGuard.Default.IsUndefined(parametrSearch)
 
         const EESTECDataBase = GlobalModule.DataBase.PostgreSQL.DataBases.EESTEC
         const EESTECRoleTable = EESTECDataBase.Tables.rolesSettings
@@ -155,7 +145,6 @@ export default class RoleService {
         if(IsIDToSearchExist) EESTECRoleMatchConditions.push(EESTECRoleTable.Condition.Single.EqualTo(`id`, IDToSearch))
         if(IsRoleNameExist) EESTECRoleMatchConditions.push(EESTECRoleTable.Condition.Single.EqualTo(`roleName`, roleNameSearch))
         if(IsPrivilegeIDExist) EESTECRoleMatchConditions.push(EESTECRoleTable.Condition.Single.EqualTo(`privilegeID`, privilegeIDSearch))
-        if(IsParametrExist) EESTECRoleMatchConditions.push(EESTECRoleTable.Condition.Single.EqualTo(`parametr`, parametrSearch))
 
         const EESTECRoleMatchCondition = EESTECRoleTable.Condition.Multiple.Every(...EESTECRoleMatchConditions)
         const MatchedEESTECRole = await RoleService.Get(searchParameters)

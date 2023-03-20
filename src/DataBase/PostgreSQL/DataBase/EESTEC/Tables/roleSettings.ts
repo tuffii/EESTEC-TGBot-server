@@ -4,21 +4,18 @@ const TableName = `role_settings`
 const TableFields = {
     ID: `id`,
     roleName: `roleName`,
-    privilegeID: `privilegeID`,
-    parametr: `parametr`
+    privilegeID: `privilegeID`
 } as const
 
 export interface Output {
     readonly [TableFields.ID]: number // Декларация типа данных, которое содержит поле при ВЫВОДЕ
     readonly [TableFields.roleName]: string
     readonly [TableFields.privilegeID]: number
-    readonly [TableFields.parametr]: boolean
 }
 
 export interface Input {
     readonly [TableFields.roleName]: Output[typeof TableFields.roleName] // Декларация типа данных, которое содержит поле при ВВОДЕ со ссылкой на декларацию этого же поля для вывода. Количество полей для ввода может быть меньше, чем количество полей для вывода (к примеру, поле id - автоинкриминирующееся число -> его не нужно указывать вручную)
     readonly [TableFields.privilegeID]: Output[typeof TableFields.privilegeID]
-    readonly [TableFields.parametr]: Output[typeof TableFields.parametr]
 }
 
 export default class Table extends ServerCore.Engine.API.DataBase.PostgreSQL.API.DataBases.Tables.BaseTable<Input, Output> {
@@ -53,17 +50,7 @@ export default class Table extends ServerCore.Engine.API.DataBase.PostgreSQL.API
                     IsUnique: false, // Поле не является уникальным и может совпадать с другими записями
                     MustBeAutoIncremented: false, // Поле не должно инкрементироваться, так как имеет тип TEXT
                 },
-            },
-            [TableFields.parametr]: {
-                Type: ServerCore.Engine.API.DataBase.PostgreSQL.API.DataBases.Tables.DataType.String.Text, // Тип поля -> TEXT
-                MetaData: {
-                    DefaultValue: undefined, // У поля стандартное значение false
-                    IsPrimary: false, // Поле является стандартным
-                    IsRequired: true, // Поле обязательное и не может содержать NULL
-                    IsUnique: false, // Поле не является уникальным и может совпадать с другими записями
-                    MustBeAutoIncremented: false, // Поле не должно инкрементироваться, так как имеет тип TEXT
-                },
-            },
+            }
         })
     }
 }

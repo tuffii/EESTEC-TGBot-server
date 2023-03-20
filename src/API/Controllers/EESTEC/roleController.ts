@@ -12,8 +12,7 @@ export default class RoleController {
     const RequestRole = {
       id: RequestRoleId,
       roleName: undefined,
-      privilegeID: undefined,
-      parametr: undefined,
+      privilegeID: undefined
     }
 
     const IsRoleExist = await GlobalModule.API.Services.EESTEC.Role.default.DoesExist(RequestRole)

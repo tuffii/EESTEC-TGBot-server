@@ -18,7 +18,7 @@ const EESTECAchieveTrackerSearchValidator = new Validator().Default.Object()
   .Exact({
     id: new Validator().Default.Numeric().Number().Integer().Min(1),
     achieveID: new Validator().Default.Numeric().Number().Integer().Min(1),
-    time: new Validator().Default.Numeric().Number().Integer().Min(1)
+    time: new Validator().Default.Numeric().Number().Integer().Min(1),
   })
 
 const EESTECAchieveTrackerIputValidator = new Validator().Default.Object()
@@ -26,7 +26,7 @@ const EESTECAchieveTrackerIputValidator = new Validator().Default.Object()
   .Exact({
     personNAme: new Validator().Default.String().MinLength(1),
     achieveID: new Validator().Default.Numeric().Number().Integer().Min(1),
-    time: new Validator().Default.Numeric().Number().Integer().Min(1)
+    time: new Validator().Default.Numeric().Number().Integer().Min(1),
   })
 
 const EESTECAchieveTrackerOutputValidator = new Validator().Default.Object()
@@ -34,7 +34,7 @@ const EESTECAchieveTrackerOutputValidator = new Validator().Default.Object()
   .Exact({
     id: new Validator().Default.Numeric().Number().Integer().Min(1),
     achieveID: new Validator().Default.Numeric().Number().Integer().Min(1),
-    time: new Validator().Default.Numeric().Number().Integer().Min(1)
+    time: new Validator().Default.Numeric().Number().Integer().Min(1),
   })
 
 interface ValidationResult {
@@ -63,7 +63,7 @@ export default class AchieveTrackerService {
 
     if (IsIDToSearchExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`id`, IDToSearch))
     if (IsAchieveTrackerIDExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`achieveID`, AchieveTrackerIDSearch))
-    if (IsTimeExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`time`,timeSearch))
+    if (IsTimeExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`time`, timeSearch))
 
     const EESTECAchieveTrackerMatchCondition = EESTECAchieveTrackerTable.Condition.Multiple.Every(...EESTECAchieveTrackerMatchConditions)
 
@@ -114,7 +114,7 @@ export default class AchieveTrackerService {
     const EESTECAchieveTrackerMatchConditions: Array<string> = []
     if (IsIDToSearchExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`id`, IDToSearch))
     if (IsAchieveTrackerIDExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`achieveID`, AchieveTrackerIDSearch))
-    if (IsTimeExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`time`,timeSearch))
+    if (IsTimeExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`time`, timeSearch))
 
     const EESTECAchieveTrackerMatchCondition = EESTECAchieveTrackerTable.Condition.Multiple.Every(...EESTECAchieveTrackerMatchConditions)
     const MatchedEESTECAchieveTrackers = await AchieveTrackerService.Get(searchParameters)
@@ -147,7 +147,7 @@ export default class AchieveTrackerService {
     const EESTECAchieveTrackerMatchConditions: Array<string> = []
     if (IsIDToSearchExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`id`, IDToSearch))
     if (IsAchieveTrackerIDExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`achieveID`, AchieveTrackerIDSearch))
-    if (IsTimeExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`time`,timeSearch))
+    if (IsTimeExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`time`, timeSearch))
 
     const EESTECRoleMatchCondition = EESTECAchieveTrackerTable.Condition.Multiple.Every(...EESTECAchieveTrackerMatchConditions)
     const MatchedEESTECRole = await AchieveTrackerService.Get(searchParameters)

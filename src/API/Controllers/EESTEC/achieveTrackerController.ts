@@ -12,7 +12,7 @@ export default class AchieveTrackerController {
     const RequestAchieveTracker = {
       id: RequestAchieveTrackerId,
       achieveID: undefined,
-      time: undefined
+      time: undefined,
     }
 
     const IsAchieveTrackerExist = await GlobalModule.API.Services.EESTEC.AchieveTracker.default.DoesExist(RequestAchieveTracker)
@@ -52,5 +52,4 @@ export default class AchieveTrackerController {
   public static async Update(request: HTTPRequest, response: HTTPResponse): Promise<void> {
     ///
   }
-
 }
