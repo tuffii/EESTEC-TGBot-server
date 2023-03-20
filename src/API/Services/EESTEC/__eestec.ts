@@ -1,10 +1,5 @@
 export * as User from './UserService.js'
 export * as Role from './roleService.js'
 export * as Privilege from './privilegeService.js'
-
-export default class PrivilegeController {
-
-
-
-    
-}
+export * as AchieveTracker from './achieveTracker.js'
+export * as Achievements from './achievements.js'
