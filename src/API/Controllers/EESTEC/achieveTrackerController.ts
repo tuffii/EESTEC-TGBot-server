@@ -11,8 +11,8 @@ export default class AchieveTrackerController {
 
     const RequestAchieveTracker = {
       id: RequestAchieveTrackerId,
-      personName: undefined,
       achieveID: undefined,
+      time: undefined
     }
 
     const IsAchieveTrackerExist = await GlobalModule.API.Services.EESTEC.AchieveTracker.default.DoesExist(RequestAchieveTracker)

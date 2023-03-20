@@ -7,8 +7,8 @@ type EESTECAchieveTrackerOutput = PostgreSQLEESTECTables.achieveTracker.Output
 
 interface EESTECAchieveTrackerSearch {
   id?: EESTECAchieveTrackerOutput[`id`] | undefined
-  personName?: EESTECAchieveTrackerOutput[`personName`] | undefined
   achieveID?: EESTECAchieveTrackerOutput[`achieveID`] | undefined
+  time?: EESTECAchieveTrackerOutput[`time`] | undefined
 }
 
 const Validator = ServerCore.Engine.Module.Classes.Validator
@@ -17,8 +17,8 @@ const EESTECAchieveTrackerSearchValidator = new Validator().Default.Object()
   .Required()
   .Exact({
     id: new Validator().Default.Numeric().Number().Integer().Min(1),
-    personNAme: new Validator().Default.String().MinLength(1),
     achieveID: new Validator().Default.Numeric().Number().Integer().Min(1),
+    time: new Validator().Default.Numeric().Number().Integer().Min(1)
   })
 
 const EESTECAchieveTrackerIputValidator = new Validator().Default.Object()
@@ -26,14 +26,15 @@ const EESTECAchieveTrackerIputValidator = new Validator().Default.Object()
   .Exact({
     personNAme: new Validator().Default.String().MinLength(1),
     achieveID: new Validator().Default.Numeric().Number().Integer().Min(1),
+    time: new Validator().Default.Numeric().Number().Integer().Min(1)
   })
 
 const EESTECAchieveTrackerOutputValidator = new Validator().Default.Object()
   .Required()
   .Exact({
     id: new Validator().Default.Numeric().Number().Integer().Min(1),
-    personNAme: new Validator().Default.String().MinLength(1),
     achieveID: new Validator().Default.Numeric().Number().Integer().Min(1),
+    time: new Validator().Default.Numeric().Number().Integer().Min(1)
   })
 
 interface ValidationResult {
@@ -50,10 +51,10 @@ export default class AchieveTrackerService {
 
     const IDToSearch = searchParameters.id
     const IsIDToSearchExist = !Validator.TypeGuard.Default.IsUndefined(IDToSearch)
-    const personNameSearch = searchParameters.personName
-    const IspersonNameExist = !Validator.TypeGuard.Default.IsUndefined(personNameSearch)
     const AchieveTrackerIDSearch = searchParameters.achieveID
     const IsAchieveTrackerIDExist = !Validator.TypeGuard.Default.IsUndefined(AchieveTrackerIDSearch)
+    const timeSearch = searchParameters.time
+    const IsTimeExist = !Validator.TypeGuard.Default.IsUndefined(timeSearch)
 
     const EESTECDataBase = GlobalModule.DataBase.PostgreSQL.DataBases.EESTEC
     const EESTECAchieveTrackerTable = EESTECDataBase.Tables.achieve_tracker
@@ -61,8 +62,8 @@ export default class AchieveTrackerService {
     const EESTECAchieveTrackerMatchConditions: Array<string> = []
 
     if (IsIDToSearchExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`id`, IDToSearch))
-    if (IspersonNameExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`personName`, personNameSearch))
     if (IsAchieveTrackerIDExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`achieveID`, AchieveTrackerIDSearch))
+    if (IsTimeExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`time`,timeSearch))
 
     const EESTECAchieveTrackerMatchCondition = EESTECAchieveTrackerTable.Condition.Multiple.Every(...EESTECAchieveTrackerMatchConditions)
 
@@ -102,18 +103,18 @@ export default class AchieveTrackerService {
 
     const IDToSearch = searchParameters.id
     const IsIDToSearchExist = !Validator.TypeGuard.Default.IsUndefined(IDToSearch)
-    const personNameSearch = searchParameters.personName
-    const IspersonNameExist = !Validator.TypeGuard.Default.IsUndefined(personNameSearch)
     const AchieveTrackerIDSearch = searchParameters.achieveID
     const IsAchieveTrackerIDExist = !Validator.TypeGuard.Default.IsUndefined(AchieveTrackerIDSearch)
+    const timeSearch = searchParameters.time
+    const IsTimeExist = !Validator.TypeGuard.Default.IsUndefined(timeSearch)
 
     const EESTECDataBase = GlobalModule.DataBase.PostgreSQL.DataBases.EESTEC
     const EESTECAchieveTrackerTable = EESTECDataBase.Tables.achieve_tracker
 
     const EESTECAchieveTrackerMatchConditions: Array<string> = []
     if (IsIDToSearchExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`id`, IDToSearch))
-    if (IspersonNameExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`personName`, personNameSearch))
     if (IsAchieveTrackerIDExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`achieveID`, AchieveTrackerIDSearch))
+    if (IsTimeExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`time`,timeSearch))
 
     const EESTECAchieveTrackerMatchCondition = EESTECAchieveTrackerTable.Condition.Multiple.Every(...EESTECAchieveTrackerMatchConditions)
     const MatchedEESTECAchieveTrackers = await AchieveTrackerService.Get(searchParameters)
@@ -121,8 +122,8 @@ export default class AchieveTrackerService {
 
     const NewEESTECAchieveTrackerSetters: Array<string> = []
     NewEESTECAchieveTrackerSetters.push(EESTECAchieveTrackerTable.ValueSetter.Single(`id`, newParameters.id))
-    NewEESTECAchieveTrackerSetters.push(EESTECAchieveTrackerTable.ValueSetter.Single(`AchieveTrackerName`, newParameters.personName))
     NewEESTECAchieveTrackerSetters.push(EESTECAchieveTrackerTable.ValueSetter.Single(`privilegeID`, newParameters.achieveID))
+    NewEESTECAchieveTrackerSetters.push(EESTECAchieveTrackerTable.ValueSetter.Single(`time`, newParameters.time))
 
     const NewEESTECAchieveTrackerSetter = EESTECAchieveTrackerTable.ValueSetter.Multiple(...NewEESTECAchieveTrackerSetters)
     const [UpdatedEESTECAchieveTracker] = await EESTECAchieveTrackerTable.Update(NewEESTECAchieveTrackerSetter, EESTECAchieveTrackerMatchCondition)
@@ -135,18 +136,18 @@ export default class AchieveTrackerService {
 
     const IDToSearch = searchParameters.id
     const IsIDToSearchExist = !Validator.TypeGuard.Default.IsUndefined(IDToSearch)
-    const personNameSearch = searchParameters.personName
-    const IspersonNameExist = !Validator.TypeGuard.Default.IsUndefined(personNameSearch)
     const AchieveTrackerIDSearch = searchParameters.achieveID
     const IsAchieveTrackerIDExist = !Validator.TypeGuard.Default.IsUndefined(AchieveTrackerIDSearch)
+    const timeSearch = searchParameters.time
+    const IsTimeExist = !Validator.TypeGuard.Default.IsUndefined(timeSearch)
 
     const EESTECDataBase = GlobalModule.DataBase.PostgreSQL.DataBases.EESTEC
     const EESTECAchieveTrackerTable = EESTECDataBase.Tables.achieve_tracker
 
     const EESTECAchieveTrackerMatchConditions: Array<string> = []
     if (IsIDToSearchExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`id`, IDToSearch))
-    if (IspersonNameExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`personName`, personNameSearch))
     if (IsAchieveTrackerIDExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`achieveID`, AchieveTrackerIDSearch))
+    if (IsTimeExist) EESTECAchieveTrackerMatchConditions.push(EESTECAchieveTrackerTable.Condition.Single.EqualTo(`time`,timeSearch))
 
     const EESTECRoleMatchCondition = EESTECAchieveTrackerTable.Condition.Multiple.Every(...EESTECAchieveTrackerMatchConditions)
     const MatchedEESTECRole = await AchieveTrackerService.Get(searchParameters)
